@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cliente</title>
+</head>
+<body>
+    <h1>Endpoints interesantes</h1>
+
+    <label>Lista:</label>
+    <input type="text" id="listBinary" value="1,2,3,4,5,6"><br><br>
+    <label>Valor:</label>
+    <input type="text" id="valueBinary" value="4"><br><br>
+    <button onclick="binarysearch()">BinarySearch</button>
+    <div id="respuestaBinary"></div>
+
+    <br><br>
+
+    <label>Valor:</label>
+    <input type="text" id="valueFib" value="7"><br><br>
+    <button onclick="fibonacci()">Fibonacci</button>
+    <div id="respuestaFib"></div>
+
+    <br><br>
+
+    <label>Valor:</label>
+    <input type="text" id="valueCat" value="5"><br><br>
+    <button onclick="catalan()">Catalán</button>
+    <div id="respuestaCat"></div>
+
+    <br><br>
+
+    <label>Lista 1:</label>
+    <input type="text" id="lista1p" value="1,2,3"><br><br>
+    <label>Lista 2:</label>
+    <input type="text" id="lista2p" value="1,2,3"><br><br>
+    <button onclick="productopunto()">Producto punto</button>
+    <div id="respuestaProductoPunto"></div>
+</body>
+<script>
+    function binarysearch() {
+        let listBinary = document.getElementById("listBinary").value;
+        let valueBinary = document.getElementById("valueBinary").value;
+        fetch("/binarysearch?list=" + encodeURIComponent(listBinary) + "&value=" + encodeURIComponent(valueBinary))
+            .then(r => r.text())
+            .then(t => document.getElementById("respuestaBinary").innerHTML = t);
+    }
+
+    function fibonacci() {
+        let valueFib = document.getElementById("valueFib").value;
+        fetch("/fibonacci?value=" + encodeURIComponent(valueFib))
+            .then(r => r.text())
+            .then(t => document.getElementById("respuestaFib").innerHTML = t);
+    }
+
+    function catalan() {
+        let valueCat = document.getElementById("valueCat").value;
+        fetch("/catalan?value=" + encodeURIComponent(valueCat))
+            .then(r => r.text())
+            .then(t => document.getElementById("respuestaCat").innerHTML = t);
+    }
+
+    function productopunto() {
+        let lista1p = document.getElementById("lista1p").value;
+        let lista2p = document.getElementById("lista2p").value;
+        fetch("/productopunto?lista1=" + encodeURIComponent(lista1p) + "&lista2=" + encodeURIComponent(lista2p))
+            .then(r => r.text())
+            .then(t => document.getElementById("respuestaProductoPunto").innerHTML = t);
+    }
+
+</script>
+</html>
